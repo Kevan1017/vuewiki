@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-show</title>
+</head>
+
+<body>
+    <div id="app-1">
+        <ul>
+            <li v-for="book of books">{{book.name}}</li>
+        </ul>
+    </div>
+
+    <div id="app-2">
+        <ul>
+            <li v-for="(book,index) in books">{{index}}-{{book.name}}</li>
+        </ul>
+    </div>
+
+    <div id="app-3">
+        <ul>
+            <template v-for="book of books">
+                <li>书名：{{book.name}}--作者：{{book.author}}</li>
+                <!-- <li>作者：{{book.author}}</li> -->
+            </template>
+        </ul>
+    </div>
+
+    <div id="app-4">
+        <span v-for="value in user">{{value}}</span>
+    </div>
+
+    <div id="app-5">
+       <ul>
+           <li v-for="(value,key,index) in user">
+               {{index}}-{{key}}:{{value}}
+           </li>
+       </ul>
+    </div>
+
+    <div id="app-6">
+        <span v-for="n in 10">{{n}}</span>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app1 = new Vue({
+            el: '#app-1',
+            data: {
+                books: [{
+                        name: 'js'
+                    },
+                    {
+                        name: 'html'
+                    },
+                    {
+                        name: 'css'
+                    }
+                ]
+            }
+        })
+        var app2 = new Vue({
+            el: '#app-2',
+            data: {
+                books: [{
+                        name: '西游记'
+                    },
+                    {
+                        name: '水浒传'
+                    },
+                    {
+                        name: '三国演义'
+                    }
+                ]
+            }
+        })
+        var app3 = new Vue({
+            el: '#app-3',
+            data: {
+                books: [{
+                    name: '《Vue.js实战》',
+                    author: '梁浩'
+                }, {
+                    name: '《js语言精粹》',
+                    author: 'Douglas'
+                }, {
+                    name: 'js高程',
+                    author: 'Nicholas'
+                }]
+            }
+        })
+        var app4 = new Vue({
+            el: '#app-4',
+            data: {
+                user: {
+                    name: 'Aresn',
+                    gender: '男',
+                    age: 26
+                }
+            }
+        })
+        var app5 = new Vue({
+            //遍历对象时有两个参数可选，分别是键名和索引
+            el: '#app-5',
+            data: {
+                user: {
+                    name: 'Aresn',
+                    gender: '男',
+                    age: 26
+                }
+            }
+        })
+        var app6 = new Vue({
+            //迭代整数
+            el:'#app-6',
+        })
+
+    </script>
+</body>
+
+</html>
