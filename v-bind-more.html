@@ -12,6 +12,21 @@
     <div id="app-1">
         <div :class="{'active':isActive}"></div>
     </div>
+    <div id="app-2">
+        <div :class="classes"></div>
+    </div>
+    <div id="app-3">
+        <div :class="[activeCls,errorCls]"></div>
+    </div>
+
+    <div id="app-4">
+        <!-- 不方便维护，写在data或computed里 -->
+        <div :style="{'color':color,'fontSize':fontSize+'px'}">文本</div>
+    </div>
+    <div id="app-5">
+        <div :style="styles">文本</div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         //绑定class的方法一：对象语法
@@ -19,6 +34,48 @@
             el: '#app-1',
             data: {
                 isActive: true
+            }
+        })
+        var app2 = new Vue({
+            el: '#app-2',
+            data: {
+                isActive: true,
+                error: null
+            },
+            computed: {
+                classes: function () {
+                    return {
+                        active: this.isActive && !this.error,
+                        'text-fail': this.error && this.error.type === 'fail'
+                    }
+                }
+            }
+        })
+
+        //方法二：数组语法
+        var app3 = new Vue({
+            el: '#app-3',
+            data: {
+                activeCls: 'active',
+                errorCls: 'error'
+            }
+        })
+
+        //绑定内联样式
+        var app4 = new Vue({
+            el: '#app-4',
+            data: {
+                color: 'red',
+                fontSize: 14
+            }
+        })
+        var app5 = new Vue({
+            el: '#app-5',
+            data: {
+                styles: {
+                    color: 'red',
+                    fontSize: 14 + 'px'
+                }
             }
         })
     </script>
